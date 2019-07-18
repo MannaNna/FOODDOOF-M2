@@ -402,3 +402,19 @@ only screen and (                min-resolution: 2dppx) {
     }
  
 }
+.about-area {
+color: gray;
+font-style:italic;
+}
+
+.team-img {
+    padding-left: 10%;
+    padding: 0%;
+    padding:0;
+}
+
+.about-text {
+    padding:0 5%;
+    max-width: 575.98px;
+    padding-right:10%;
+}
