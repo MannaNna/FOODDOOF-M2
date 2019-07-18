@@ -57,8 +57,8 @@
                         </p>
                     </div>
                     <div class="top-big-link wow fadeInUp">
-                        <input type='text' placeholder="Search" style="width: 400px">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <input id='txtSearch' type='text' placeholder="Search" style="width: 400px">
+                        <button id='btnSearch' type="submit" onclick="searchClick()" ><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </div>
@@ -75,46 +75,9 @@
                 <div class="divider-1 wow fadeInUp"><span></span></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 results-box wow fadeInUp">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="results-box-icon">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h3>Event One</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 results-box wow fadeInDown">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="results-box-icon">
-                            <i class="fas fa-cog"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h3>Event Two</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 results-box wow fadeInUp">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="results-box-icon">
-                            <i class="fab fa-google"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h3>Event</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-                    </div>
-                </div>
-            </div>
+        <div id="resultsContainer" class="row">
+            
+
         </div>
     </div>
 </div>
