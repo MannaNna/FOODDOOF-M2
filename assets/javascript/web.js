@@ -146,14 +146,14 @@ function callEBAPI(searchQuery){
                     // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
 
                     //Prettify date and time for event
-                    var dateStart = moment(date_start).format('MMMM Do YYYY, h:mm:ss A');
-                    var dateEnd = moment(date_end).format('MMMM Do YYYY, h:mm:ss A');
+                    var dateStart = moment(date_start).format('MMMM Do YYYY, h:mm a');
+                    var dateEnd = moment(date_end).format('MMMM Do YYYY, h:mm a');
     
-                    var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><img src="' 
+                    var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><a href="' + weblink + '"><img src="' 
                     + image + '" style="width:100%;height:150px;"><h4>' 
-                    + '<a href="' + weblink + '">' + name + '</a></h4><p>'
+                    + name + '</h4><p>'
                     + dateStart + ' to ' 
-                    + dateEnd + '</div></p></div></div></div>';
+                    + dateEnd + '</div></p></a></div></div></div>';
                     
                     $('#resultsContainer').append(resultContainer);
               });
