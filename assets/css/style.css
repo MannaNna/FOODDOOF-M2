@@ -10,7 +10,7 @@ body {
 strong { font-weight: 600; }
  
 a, a:hover, a:focus {
-    color: #9b59b6;
+    color: #888;
     text-decoration: none;
     transition: all .3s;
 }
