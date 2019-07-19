@@ -9,8 +9,14 @@ body {
  
 strong { font-weight: 600; }
  
-a, a:hover, a:focus {
-    color: #9b59b6;
+a {
+    color: #888;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+a:hover, a:focus {
+    color: #b7a57a;
     text-decoration: none;
     transition: all .3s;
 }
