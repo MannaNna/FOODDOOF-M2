@@ -106,7 +106,6 @@ function callEBAPI(searchQuery){
         method: 'GET',
         dataType: 'json',
         success: function(data){
-            debugger;
             // Grab the results from the API JSON return
             var totalresults = data.events.length;
             // If our results are greater than 0, continue
@@ -116,14 +115,11 @@ function callEBAPI(searchQuery){
                 // Itirate through the JSON array of 'businesses' which was returned by the API
                 $.each(data.events, function(i, item) {
                     // Store each business's object in a variable
-                    var id = item.id;
-                    var alias = item.alias;
-                    var phone = item.display_phone;
-                    var image = item.image_url;
-                    var name = item.name;
-                    var rating = item.rating;
-                    var reviewcount = item.review_count;
-                    var address = item.address.address_1;
+                    var image = item.logo.url;
+                    var name = item.name.text;
+                    var date_start = item.start.local;
+                    var date_end = item.end.local;
+                    var weblink = item.vanity_url;
                     // var city = item.location.city;
                     // var state = item.location.state;
                     // var zipcode = item.location.zip_code;
@@ -132,14 +128,9 @@ function callEBAPI(searchQuery){
     
                     var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><img src="' 
                     + image + '" style="width:100%;height:150px;"><h4>' 
-                    + name + '</h4><p>Located at: ' 
-                    + address + ' ' ;
-                    // + city + ', ' 
-                    // + state + ' ' 
-                    // + zipcode + '<br>The phone number for this business is: ' 
-                    // + phone + '<br>This business has a rating of ' 
-                    // + rating + ' with ' 
-                    // + reviewcount + ' reviews.</div></p></div></div></div>';
+                    + '<a href="' + weblink + '">' + name + '</a></h4><p>'
+                    + date_start + ' to ' 
+                    + date_end + '</div></p></div></div></div>';
     
                     $('#resultsContainer').append(resultContainer);
               });
