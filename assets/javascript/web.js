@@ -14,11 +14,10 @@ function searchClick(){
 	if (selected.length > 0) {
 		selectedVal = selected.val();
 	}
-	alert(selectedVal);
 	if (selectedVal == 0){
 		//searchQuery = "events?location=" + searchStr+"&limit=" + maxResultValue;
-		searchQuery = "events";
-		    callYelpAPI(searchQuery);
+		searchQuery = "search?location.address=" + searchStr ;//+"&limit=" + maxResultValue;
+		    callEBAPI(searchQuery);
 	}
 	else{
 		searchQuery = "businesses/search?term=&location=" + searchStr +"&limit=" + maxResultValue;
@@ -92,4 +91,66 @@ function callYelpAPI(searchQuery){
          alert("API ERROR");
     }	
  });
-}      
+}     
+
+function callEBAPI(searchQuery){
+
+    var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/' + searchQuery ;
+    
+    $.ajax({
+        headers: {
+            "Authorization": "Bearer WU7KU6HKP6T3INTQLZR2",
+            'Access-Control-Allow-Origin' : '*'
+        },
+        url: queryURL,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data){
+            debugger;
+            // Grab the results from the API JSON return
+            var totalresults = data.events.length;
+            // If our results are greater than 0, continue
+            if (totalresults > 0){
+                // Display a header on the page with the number of results
+                $('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
+                // Itirate through the JSON array of 'businesses' which was returned by the API
+                $.each(data.events, function(i, item) {
+                    // Store each business's object in a variable
+                    var id = item.id;
+                    var alias = item.alias;
+                    var phone = item.display_phone;
+                    var image = item.image_url;
+                    var name = item.name;
+                    var rating = item.rating;
+                    var reviewcount = item.review_count;
+                    var address = item.address.address_1;
+                    // var city = item.location.city;
+                    // var state = item.location.state;
+                    // var zipcode = item.location.zip_code;
+                    // Append our result into our page
+                    // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
+    
+                    var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><img src="' 
+                    + image + '" style="width:100%;height:150px;"><h4>' 
+                    + name + '</h4><p>Located at: ' 
+                    + address + ' ' ;
+                    // + city + ', ' 
+                    // + state + ' ' 
+                    // + zipcode + '<br>The phone number for this business is: ' 
+                    // + phone + '<br>This business has a rating of ' 
+                    // + rating + ' with ' 
+                    // + reviewcount + ' reviews.</div></p></div></div></div>';
+    
+                    $('#resultsContainer').append(resultContainer);
+              });
+            } else {
+                // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
+                $('#results').append('<h5>We discovered no results!</h5>');
+            }
+        },
+         error: function(XMLHttpRequest, textStatus, errorThrown) {
+             alert("API ERROR");
+        }	
+
+    }); 
+}
