@@ -52,14 +52,24 @@
                     <h1 class="">Do you even FOODDOOF?</h1>
                     <div class="description ">
                         <p>
-							<input type="radio" name="search" value="1" checked> Restaturants
-                            <input type="radio" name="search" value="0" > Events
+                            <div class="form-check form-check-inline">
+                            <input id="searchRadio1" type="radio"  class="form-check-input" name="search" value="1" checked> 
+                           <label class="form-check-input" for="searchRadio1">Restaturants</label> 
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input id="searchRadio2" type="radio" class="form-check-input" name="search" value="0" > 
+                           <label id="form-check-input" for="searchRadio2">Events</label> 
+                        </div>
                             
                         </p>
                     </div>
                     <div class="top-big-link wow fadeInUp">
+                            <div class="form-check form-check-inline">
                         <input id='txtSearch' type='text' class='form-control' placeholder="Search by location" style="width: 400px">
+                            </div>
+                        <div class="form-check form-check-inline"></div>
                         <button id='btnSearch' type="submit" class='btn btn-primary' onclick="searchClick()" ><i class="fa fa-search"></i></button>
+                    </div>
                     </div>
                 </div>
             </div>

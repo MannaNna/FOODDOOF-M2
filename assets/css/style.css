@@ -311,6 +311,9 @@ h1, h2 {
 #contact{
     min-height: 600px;
 }
+label {
+    margin-bottom: 0 !important;
+}
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .top-content { padding:180px 0; }

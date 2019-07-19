@@ -1,6 +1,23 @@
 var maxResultValue = 20;
 
+$( document ).ready(function() {
+    $("#txtSearch").keypress(function(e) {
+    if(e.which == 13) {
+        searchClick();
+    }
+    });
+});
+
+
 function searchClick(){
+    var resultsOffSet = $("#results").offset().top;
+    if ( $(document).scrollTop() < resultsOffSet ) {
+        $(document).scrollTop( $("#results").offset().top );
+
+}
+else{
+
+}
 	
     var searchStr = null; // If user doesn't type a location then it will use Seattle
 	searchStr = $('#txtSearch').val();
@@ -34,6 +51,7 @@ function searchClick(){
  
 
 function callYelpAPI(searchQuery){
+    $('#resultsContainer').html('');
     var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/" + searchQuery; //+searchType+"location=" + searchStr;
 	//var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events";
  $.ajax({
@@ -51,7 +69,7 @@ function callYelpAPI(searchQuery){
         // If our results are greater than 0, continue
         if (totalresults > 0){
             // Display a header on the page with the number of results
-            $('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
+            //$('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
             // Itirate through the JSON array of 'businesses' which was returned by the API
             $.each(data.businesses, function(i, item) {
                 // Store each business's object in a variable
@@ -80,6 +98,7 @@ function callYelpAPI(searchQuery){
 				+ rating + ' with ' 
 				+ reviewcount + ' reviews.</div></p></div></div></div>';
 
+              
                 $('#resultsContainer').append(resultContainer);
           });
         } else {
@@ -94,7 +113,7 @@ function callYelpAPI(searchQuery){
 }     
 
 function callEBAPI(searchQuery){
-
+    $('#resultsContainer').html('');
     var queryURL = 'https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/' + searchQuery ;
     
     $.ajax({
@@ -111,7 +130,7 @@ function callEBAPI(searchQuery){
             // If our results are greater than 0, continue
             if (totalresults > 0){
                 // Display a header on the page with the number of results
-                $('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
+                //$('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
                 // Itirate through the JSON array of 'businesses' which was returned by the API
                 $.each(data.events, function(i, item) {
                     // Store each business's object in a variable
@@ -131,7 +150,7 @@ function callEBAPI(searchQuery){
                     + '<a href="' + weblink + '">' + name + '</a></h4><p>'
                     + date_start + ' to ' 
                     + date_end + '</div></p></div></div></div>';
-    
+                    
                     $('#resultsContainer').append(resultContainer);
               });
             } else {
