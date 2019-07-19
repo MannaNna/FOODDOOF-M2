@@ -1,18 +1,42 @@
-
+var maxResultValue = 20;
 
 function searchClick(){
-    var searchStr = null;
-    searchStr = $('#txtSearch').val();
-    callYelpAPI(searchStr);
+	
+    var searchStr = null; // If user doesn't type a location then it will use Seattle
+	searchStr = $('#txtSearch').val();
+	if(searchStr=='null' || searchStr==''){
+		searchStr = "Seattle";
+	}
+	var selectedVal = "";
+	var searchQuery = null;
+	var selected = $("input[name='search']:checked");
+		
+	if (selected.length > 0) {
+		selectedVal = selected.val();
+	}
+	alert(selectedVal);
+	if (selectedVal == 0){
+		//searchQuery = "events?location=" + searchStr+"&limit=" + maxResultValue;
+		searchQuery = "events";
+		    callYelpAPI(searchQuery);
+	}
+	else{
+		searchQuery = "businesses/search?term=&location=" + searchStr +"&limit=" + maxResultValue;
+		    callYelpAPI(searchQuery);
+	}
+	
+    
+
     console.log('Search Clicked');
+	console.log(searchStr);
+	console.log(searchQuery);
   };
 
  
 
-function callYelpAPI(searchStr){
-    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=&location=" + searchStr;
-//var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=&location=seattle";
-
+function callYelpAPI(searchQuery){
+    var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/" + searchQuery; //+searchType+"location=" + searchStr;
+	//var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events";
  $.ajax({
     url: myurl,
     headers: {
@@ -28,7 +52,7 @@ function callYelpAPI(searchStr){
         // If our results are greater than 0, continue
         if (totalresults > 0){
             // Display a header on the page with the number of results
-            $('#results').append('<h5>We discovered ' + totalresults + ' results!</h5>');
+            $('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
             // Itirate through the JSON array of 'businesses' which was returned by the API
             $.each(data.businesses, function(i, item) {
                 // Store each business's object in a variable
@@ -46,7 +70,16 @@ function callYelpAPI(searchStr){
                 // Append our result into our page
                 // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
 
-                var resultContainer ='<div class=\"col-md-4 results-box wow fadeInUp\"><div class="row"><div class="col-md-4"><img src="' + image + '" style="width:200px;height:150px;"><br></div><div class="col-md-8"><h3>' + name + '</h3><p><br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div></p></div></div></div>';
+                var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><img src="' 
+				+ image + '" style="width:100%;height:150px;"><h4>' 
+				+ name + '</h4><p>Located at: ' 
+				+ address + ' ' 
+				+ city + ', ' 
+				+ state + ' ' 
+				+ zipcode + '<br>The phone number for this business is: ' 
+				+ phone + '<br>This business has a rating of ' 
+				+ rating + ' with ' 
+				+ reviewcount + ' reviews.</div></p></div></div></div>';
 
                 $('#resultsContainer').append(resultContainer);
           });

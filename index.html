@@ -52,12 +52,13 @@
                     <h1 class="">Do you even FOODDOOF?</h1>
                     <div class="description ">
                         <p>
-                            <input type="radio" value="Events"> Events
-                            <input type="radio" value="Restaurants"> Restaturants
+							<input type="radio" name="search" value="1" checked> Restaturants
+                            <input type="radio" name="search" value="0" > Events
+                            
                         </p>
                     </div>
                     <div class="top-big-link wow fadeInUp">
-                        <input id='txtSearch' type='text' placeholder="Search" style="width: 400px">
+                        <input id='txtSearch' type='text' placeholder="Search by location" style="width: 400px">
                         <button id='btnSearch' type="submit" onclick="searchClick()" ><i class="fa fa-search"></i></button>
                     </div>
                 </div>
@@ -70,9 +71,8 @@
 <div id='results' class="results-container section-container">
     <div class="container">
         <div class="row">
-            <div class="col results section-description wow fadeIn">
+            <div class="col results section-description">
                 <h2>Search Results</h2>
-                <div class="divider-1 wow fadeInUp"><span></span></div>
             </div>
         </div>
         <div id="resultsContainer" class="row">
@@ -81,7 +81,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- About us -->
 <div id='about-us' class="about-us-container section-container section-container-gray-bg">
@@ -113,9 +112,9 @@
 <div id='contact' class="portfolio-container section-container">
     <div class="container">
         <div class="row">
-            <div class="col portfolio section-description wow fadeIn">
+            <div class="col portfolio section-description">
                 <h2>CONTACT US</h2>
-                <div class="divider-1 wow fadeInUp"><span></span></div>
+                <div class="divider-1 Up"><span></span></div>
                 <p>This is where we will have a form for people to email us.</p>
             </div>
         </div>
@@ -132,4 +131,4 @@
 
   
 </body>
-</html>
+</html>s
