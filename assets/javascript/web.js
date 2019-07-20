@@ -98,8 +98,9 @@ function callYelpAPI(searchQuery){
 				+ zipcode + '<br>The phone number for this business is: ' 
 				+ phone + '<br>This business has a rating of ' 
 				+ rating + ' with ' 
-                + reviewcount + ' reviews.</div></p></div></div></div>';
-
+                + reviewcount + ' reviews.<br>' 
+                + '<a href="' + url + '"target="_blank">Click to see more of this website</a>' 
+                +'</div></p></div></div></div>';
               
                 $('#resultsContainer').append(resultContainer);
           });
