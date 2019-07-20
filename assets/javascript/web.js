@@ -72,6 +72,7 @@ function callYelpAPI(searchQuery){
             //$('#results').append('<h5>We discovered ' + totalresults + ' results! Here are the top ' + maxResultValue +'! </h5>');
             // Itirate through the JSON array of 'businesses' which was returned by the API
             $.each(data.businesses, function(i, item) {
+                //debugger;
                 // Store each business's object in a variable
                 var id = item.id;
                 var alias = item.alias;
@@ -84,11 +85,12 @@ function callYelpAPI(searchQuery){
                 var city = item.location.city;
                 var state = item.location.state;
                 var zipcode = item.location.zip_code;
+                var url = item.url;
                 // Append our result into our page
                 // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
 
-                var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><img src="' 
-				+ image + '" style="width:100%;height:150px;"><h4>' 
+                var resultContainer ='<div class=\"col-md-3 results-box wow fadeInUp\"><div class="row"><div class="col-md-3"></div><div class="col-md-12"><a href="'+url+'" target="_blank" ><img src="' 
+				+ image + '" style="width:100%;height:150px;"></a><h4>' 
 				+ name + '</h4><p>Located at: ' 
 				+ address + ' ' 
 				+ city + ', ' 
@@ -96,7 +98,7 @@ function callYelpAPI(searchQuery){
 				+ zipcode + '<br>The phone number for this business is: ' 
 				+ phone + '<br>This business has a rating of ' 
 				+ rating + ' with ' 
-				+ reviewcount + ' reviews.</div></p></div></div></div>';
+                + reviewcount + ' reviews.</div></p></div></div></div>';
 
               
                 $('#resultsContainer').append(resultContainer);
