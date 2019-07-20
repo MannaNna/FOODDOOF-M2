@@ -84,6 +84,7 @@ function callYelpAPI(searchQuery){
                 var city = item.location.city;
                 var state = item.location.state;
                 var zipcode = item.location.zip_code;
+                var url = item.url;
                 // Append our result into our page
                 // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
 
@@ -96,7 +97,9 @@ function callYelpAPI(searchQuery){
 				+ zipcode + '<br>The phone number for this business is: ' 
 				+ phone + '<br>This business has a rating of ' 
 				+ rating + ' with ' 
-				+ reviewcount + ' reviews.</div></p></div></div></div>';
+                + reviewcount + ' reviews.<br>' 
+                + '<a href="' + url + '"target="_blank">Click to see more of this website</a>' 
+                +'</div></p></div></div></div>';
 
               
                 $('#resultsContainer').append(resultContainer);
